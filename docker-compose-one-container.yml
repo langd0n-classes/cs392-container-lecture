@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  our_webserver:
+      container_name: our_webserver
+      hostname: our_webserver
+      build:
+          context: .
+          dockerfile: Containerfile-mount-file
+      ports:
+        - 8080:80
+      volumes:
+        - ./website:/var/www/html:z
+      restart: always

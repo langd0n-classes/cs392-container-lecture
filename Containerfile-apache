@@ -1,0 +1,6 @@
+FROM fedora
+
+RUN dnf install -y httpd
+
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+

@@ -1,0 +1,6 @@
+FROM fedora
+
+RUN dnf install -y cowsay
+
+ENTRYPOINT ["/usr/bin/cowsay"]
+
