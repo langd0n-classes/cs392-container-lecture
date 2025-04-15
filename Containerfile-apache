@@ -1,6 +1,6 @@
-FROM fedora
+FROM fedora-minimal
 
-RUN dnf install -y httpd
+RUN microdnf install -y httpd
 
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 

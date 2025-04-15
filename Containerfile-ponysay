@@ -1,0 +1,30 @@
+FROM debian:bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y \
+        git \
+        python3 \
+        python3-pip \
+        python3-setuptools \
+        fonts-dejavu \
+        cowsay \
+        toilet \
+        figlet \
+        fortune-mod \
+        lolcat \
+        texinfo \
+        make \
+        gzip \
+        xz-utils && \
+    git clone https://github.com/erkin/ponysay.git /opt/ponysay && \
+    cd /opt/ponysay && \
+    # skip makeinfo errors by faking the file
+    make info || true && \
+    python3 setup.py install --freedom=strict && \
+    apt-get remove -y git python3-pip python3-setuptools texinfo make && \
+    apt-get autoremove -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["ponysay"]

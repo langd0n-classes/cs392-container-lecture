@@ -1,0 +1,6 @@
+FROM fedora
+
+RUN dnf install -y nyancat
+
+ENTRYPOINT ["/usr/bin/nyancat"]
+
